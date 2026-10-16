@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Juddster is a two-seat electric aircraft that lifts straight up, flies on wings and lands in two parking bays. Waterfront to the Winelands in twenty minutes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M15 2c6 0 11 7 11 15 0 6-5 11-11 11S4 23 4 17C4 9 9 2 15 2z' fill='none' stroke='%232f6b4f' stroke-width='3'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%232f6b4f'/%3E%3C/svg%3E">
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Juddster - Waterfront to the Winelands in twenty minutes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single long scrolling page with four anchored sections, a sticky top bar, full-width colour bands and a 1080px inner column. */
+:root{
+  --bg:#eef1ec; --bg2:#ffffff; --ink:#15211b; --ink-soft:#4f5f56; --line:#c6cfc6;
+  --accent:#2f6b4f; --accent-ink:#ffffff; --cta:#b5612a; --cta-ink:#ffffff; --band:#15211b; --band-ink:#eef1ec; --band-soft:#a9b8ae;
+  --ok:#2f6b4f; --warn:#9a6a12;
+  --display:"Big Shoulders Display","Arial Narrow",sans-serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  /* demo tokens */
+  --sky:#e6ecf1; --floor:#cfd8df; --panel:#f6f8f9; --amber:#d99a1c; --alert:#c2362b;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121a15;--bg2:#1a241e;--ink:#e8ede8;--ink-soft:#a9b8ae;--line:#33423a;--accent:#6fb58f;--accent-ink:#0f1a13;--cta:#d98447;--cta-ink:#1a0f06;--band:#0b100d;--band-ink:#e8ede8;--band-soft:#8a9a90;--ok:#6fb58f;--warn:#d9a94a;--sky:#1d262c;--floor:#2a353d;--panel:#243038;--line:#33423a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a15;--bg2:#1a241e;--ink:#e8ede8;--ink-soft:#a9b8ae;--line:#33423a;--accent:#6fb58f;--accent-ink:#0f1a13;--cta:#d98447;--cta-ink:#1a0f06;--band:#0b100d;--band-ink:#e8ede8;--band-soft:#8a9a90;--ok:#6fb58f;--warn:#d9a94a;--sky:#1d262c;--floor:#2a353d;--panel:#243038;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.in{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1;margin:0;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:clamp(34px,5vw,54px);font-weight:800}
+h3{font-size:24px;font-weight:700}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--band);color:var(--band-ink)}
+.bar .in{display:flex;align-items:center;gap:18px;min-height:58px;padding-block:8px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo svg{width:30px;height:30px}
+.bar nav{display:flex;gap:4px 18px;flex-wrap:wrap;margin-left:auto}
+.bar nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--band-soft);padding:6px 0}
+.bar nav a:hover,.bar nav a:focus-visible{color:var(--band-ink)}
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:16px;text-decoration:none;border-radius:4px;padding:12px 20px;border:1px solid transparent;cursor:pointer;min-height:44px;line-height:1.2}
+.btn.cta{background:var(--cta);color:var(--cta-ink)}
+.btn.ghost{background:transparent;border-color:currentColor}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--cta);outline-offset:2px}
+/* hero */
+.hero{background:var(--band);color:var(--band-ink);padding-block:48px 56px}
+.hero .in{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center}
+.hero h1{font-size:clamp(52px,9vw,112px);font-weight:800;line-height:.92}
+.hero h1 em{font-style:normal;color:var(--cta)}
+.hero p.lead{font-size:clamp(18px,2.2vw,22px);max-width:34ch;margin-top:18px;color:var(--band-soft)}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero .acts .ghost{color:var(--band-ink)}
+.hero-art{min-width:0}
+.hero-art svg{width:100%;height:auto;display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #33423a;margin-top:40px}
+.stats div{padding:16px 0 0;border-left:1px solid #33423a;padding-left:14px}
+.stats div:first-child{border-left:0;padding-left:0}
+.stats b{display:block;font-family:var(--display);font-size:38px;font-weight:700;line-height:1}
+.stats span{font-size:14px;color:var(--band-soft)}
+/* sections */
+section{padding-block:64px}
+section.alt{background:var(--bg2)}
+.head{display:grid;gap:10px;max-width:60ch;margin-bottom:32px}
+.head p{font-size:19px;color:var(--ink-soft)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:20px;min-width:0}
+section.alt .card{background:var(--bg)}
+.card h3{margin-bottom:8px}
+.card p{color:var(--ink-soft)}
+.route{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;background:var(--band);color:var(--band-ink);border-radius:6px;padding:22px 24px}
+.route b{font-family:var(--display);font-size:30px;font-weight:700;display:block;line-height:1}
+.route small{color:var(--band-soft);font-size:14px}
+.route .mid{text-align:center;font-family:var(--mono);font-size:13px;color:var(--band-soft)}
+.route .mid i{display:block;width:90px;height:2px;background:var(--cta);margin:6px auto}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+td:last-child{font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto;min-width:0}
+figure{margin:0;min-width:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+figcaption{font-size:14px;color:var(--ink-soft);margin-top:8px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--accent)}
+.steps div{padding:18px 18px 0 0;border-right:1px solid var(--line)}
+.steps div:last-child{border-right:0}
+.steps .eyebrow{color:var(--accent)}
+.steps h3{margin:6px 0 8px}
+.steps p{color:var(--ink-soft);font-size:16px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{font-weight:600;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--accent)}
+.faq details[open] summary::after{content:"-"}
+.faq p{margin-top:10px;color:var(--ink-soft);max-width:70ch}
+/* form */
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-weight:600;font-size:15px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:11px 12px;min-height:44px;width:100%}
+textarea{min-height:90px;resize:vertical}
+.choice{display:flex;gap:8px;flex-wrap:wrap}
+.choice label{flex:1 1 140px;flex-direction:row;align-items:center;gap:8px;border:1px solid var(--line);border-radius:4px;padding:10px 12px;cursor:pointer;background:var(--bg2);font-weight:500}
+.choice input{width:auto;min-height:0}
+.note{font-size:14px;color:var(--ink-soft);max-width:70ch}
+#done{background:var(--bg2);border:1px solid var(--accent);border-radius:6px;padding:20px;display:grid;gap:12px}
+#done pre{font-family:var(--mono);font-size:13px;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px;margin:0}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn)}
+.status::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--warn)}
+footer{background:var(--band);color:var(--band-soft);padding-block:36px;font-size:14px}
+footer .in{display:grid;gap:10px}
+footer b{color:var(--band-ink)}
+/* demo (from the flight demo) */
+#stage{position:relative;background:var(--sky);border:1px solid var(--line);border-radius:6px;overflow:hidden;height:min(60vh,560px);min-height:320px}
+#stage canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#stage canvas:active{cursor:grabbing}
+.readouts{position:absolute;left:10px;top:10px;display:grid;grid-template-columns:repeat(2,auto);gap:2px 14px;background:rgba(246,248,249,.86);color:#14212b;border:1px solid #b4c1cb;border-radius:4px;padding:8px 10px;font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;pointer-events:none}
+.readouts span:nth-child(odd){color:#4b5d6b}
+.hint{position:absolute;right:10px;bottom:8px;font-size:12px;color:#4b5d6b;background:rgba(246,248,249,.8);padding:2px 8px;border-radius:3px;pointer-events:none}
+.phases{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.demo button{font-family:var(--body);font-size:14px;font-weight:500;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:8px 12px;cursor:pointer;min-height:40px}
+.demo button:hover{border-color:var(--ink-soft)}
+.phases button{flex:1 1 118px}
+.phases button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.phases button.escape{color:var(--alert);border-color:var(--alert)}
+.phases button.escape[aria-pressed="true"]{background:var(--alert);color:#fff}
+.transport{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.transport input[type=range]{flex:1 1 220px;min-width:0;accent-color:var(--accent);height:28px;padding:0;border:0;background:transparent}
+.demo #play{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.desc{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0;margin-top:12px}
+.desc h2{font-size:24px;font-weight:700;margin:0 0 4px}
+.desc p{margin:0;max-width:70ch;color:var(--ink-soft)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-soft);margin-top:10px}
+.key i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+#fallback{padding:24px;color:var(--ink-soft)}
+@media (max-width:860px){.hero .in,.grid2,.grid3,.steps,.row{grid-template-columns:1fr}.steps div{border-right:0;border-bottom:1px solid var(--line);padding:16px 0}.stats{grid-template-columns:1fr 1fr;gap:18px 0}.stats div:nth-child(3){border-left:0;padding-left:0}.route{grid-template-columns:1fr}.route .mid i{margin:6px 0}.route .mid{text-align:left}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+</head><body>
+<div class="bar"><div class="in">
+  <a class="logo" href="#top" aria-label="Juddster home"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2c6 0 11 7 11 15 0 6-5 11-11 11S4 23 4 17C4 9 9 2 15 2z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="15" r="2.6" fill="currentColor"/><path d="M4 15h22" stroke="currentColor" stroke-width="2"/></svg>JUDDSTER</a>
+  <nav><a href="#shuttle">Shuttle</a><a href="#fly">See it fly</a><a href="#tech">Technology</a><a href="#own">Own one</a><a href="#register">Register</a></nav>
+</div></div>
+
+<div id="top" class="hero"><div class="in">
+  <div>
+    <span class="eyebrow" style="color:var(--band-soft)">Cape Town, South Africa</span>
+    <h1>Waterfront to the Winelands in <em>twenty minutes.</em></h1>
+    <p class="lead">Juddster is a two-seat electric aircraft that lifts straight up, flies on wings and lands in two parking bays. Nobody at the controls. Your seat stays level the whole way.</p>
+    <div class="acts"><a class="btn cta" href="#register">Register interest</a><a class="btn ghost" href="#fly">Watch the flight</a></div>
+    <div class="stats">
+      <div><b>20 min</b><span>Waterfront to Stellenbosch</span></div>
+      <div><b>R750</b><span>per seat, one way, target fare</span></div>
+      <div><b>0</b><span>pilots on board</span></div>
+      <div><b>0 deg</b><span>cabin tilt in flight</span></div>
+    </div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 420 420">
+      <defs><radialGradient id="g" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b9c1bb"/></radialGradient></defs>
+      <ellipse cx="210" cy="372" rx="150" ry="14" fill="#000" opacity=".25"/>
+      <path d="M150 362 L110 372 M270 362 L310 372" stroke="#8a9a90" stroke-width="7" stroke-linecap="round"/>
+      <path d="M210 40 C300 40 330 160 330 240 C330 320 275 365 210 365 C145 365 90 320 90 240 C90 160 120 40 210 40 Z" fill="url(#g)" stroke="#5a6a60" stroke-width="2"/>
+      <path d="M222 44 C285 70 318 150 318 235 L300 240 C300 160 268 85 215 55 Z" fill="#6fb3d6" opacity=".85"/>
+      <path d="M96 268 L324 268" stroke="#b5612a" stroke-width="6"/>
+      <rect x="60" y="226" width="30" height="16" rx="3" fill="#2f4b3c"/><rect x="330" y="226" width="30" height="16" rx="3" fill="#2f4b3c"/>
+      <path d="M20 232 C40 212 70 220 60 240 Z" fill="#2f4b3c"/><path d="M400 232 C380 212 350 220 360 240 Z" fill="#2f4b3c"/>
+      <circle cx="210" cy="234" r="16" fill="#eef1ec" stroke="#5a6a60" stroke-width="2"/><circle cx="210" cy="234" r="5" fill="#15211b"/>
+      <path d="M112 365 C130 358 290 358 308 365" stroke="#2f4b3c" stroke-width="10" stroke-linecap="round"/>
+    </svg>
+  </div>
+</div></div>
+
+<section id="shuttle"><div class="in">
+  <div class="head"><span class="eyebrow">The shuttle</span><h2>Book a seat, walk to the pad, land on the farm.</h2><p>The launch route runs from the V&amp;A Waterfront to Delaire Graff on the Helshoogte Pass. More Stellenbosch and Franschhoek farms follow as pads are built.</p></div>
+  <div class="route">
+    <div><b>V&amp;A Waterfront</b><small>Pad beside the Silo District</small></div>
+    <div class="mid">46 km straight line<i></i>about 20 minutes</div>
+    <div><b>Delaire Graff</b><small>Helshoogte Pass, Stellenbosch</small></div>
+  </div>
+  <div class="grid3" style="margin-top:28px">
+    <div class="card"><h3>Two seats, side by side</h3><p>You and one companion, with a window strip from the crown of the pod to your knees. The pod charges on the farm while you taste.</p></div>
+    <div class="card"><h3>Flown automatically</h3><p>No pilot on board. The route is fixed, surveyed and flown the same way every time, with a wind limit at each pad and a parachute for the whole aircraft.</p></div>
+    <div class="card"><h3>Level all the way</h3><p>The outer shell turns to point the fan down for lift-off and back for cruise. The cabin hangs inside it and never tilts.</p></div>
+  </div>
+</div></section>
+
+<section id="fly" class="alt"><div class="in demo">
+  <div class="head"><span class="eyebrow">See it fly</span><h2>The shell turns. You do not.</h2><p>Play the full flight or step through each phase. Drag the model to look around it, and press See inside to watch the cabin stay level while the shell rotates.</p></div>
+  <div id="stage">
+    <canvas id="c" aria-label="3D model of the aircraft"></canvas>
+    <div class="readouts" aria-live="off">
+      <span>Shell angle</span><span id="rA">0 deg</span>
+      <span>Speed</span><span id="rV">0 km/h</span>
+      <span>Cabin lean</span><span id="rL">0 deg</span>
+      <span>Height</span><span id="rH">0 m</span>
+    </div>
+    <div class="hint">Drag to orbit, scroll or pinch to zoom</div>
+    <div id="fallback" hidden>This model needs WebGL, which this browser has not made available.</div>
+  </div>
+
+  <div class="phases" id="phases" role="group" aria-label="Flight phase"></div>
+
+  <div class="transport">
+    <button id="play" type="button">Play full flight</button>
+    <input id="scrub" type="range" min="0" max="27" step="0.01" value="0" aria-label="Flight timeline">
+    <button id="inside" type="button" aria-pressed="false">See inside</button>
+  </div>
+
+  <div class="desc"><h2 id="dTitle"></h2><p id="dText"></p></div>
+
+  <div class="key">
+    <span><i style="background:#f3f5f4;border:1px solid #9aa7b1"></i>Shell, turns</span>
+    <span><i style="background:#1c57b3"></i>Wings and axle, stay level</span>
+    <span><i style="background:#5f7684"></i>Cabin, stays upright</span>
+    <span><i style="background:#d99a1c"></i>Main battery in the shell flanks</span>
+    <span><i style="background:#2f6f7e"></i>Window strip</span>
+    <span>The figure beside the pad is 1.8 m tall</span>
+  </div>
+
+</div></section>
+
+<section id="tech"><div class="in">
+  <div class="head"><span class="eyebrow">Technology</span><h2>Three bodies on one axle.</h2><p>A cabin that hangs level, a pair of wings that stay level, and an egg-shaped shell that rotates a quarter turn around both. The fan and the battery live in the shell. Patent pending.</p></div>
+  <div class="grid2">
+    <figure><img src="fig01.png" alt="Patent drawing of the aircraft standing on its fins"><figcaption>Standing on its fins, fan down, ready to lift.</figcaption></figure>
+    <figure><img src="fig06.png" alt="Patent drawing of the shell turning through a quarter turn"><figcaption>The quarter turn from hover to cruise. The cabin and wings keep their attitude.</figcaption></figure>
+  </div>
+  <div class="grid2" style="margin-top:32px">
+    <div class="tbl"><table>
+      <tr><th>Aircraft</th><th>Shuttle pod</th></tr>
+      <tr><td>Seats</td><td>2</td></tr>
+      <tr><td>All-up mass</td><td>600 kg</td></tr>
+      <tr><td>Shell width</td><td>2.5 m</td></tr>
+      <tr><td>Height on the ground</td><td>3.7 m on spread fins, 2.35 m lying down</td></tr>
+      <tr><td>Lift</td><td>One 1.8 m ducted fan, two stages, two motors</td></tr>
+      <tr><td>Cruise speed</td><td>140 to 180 km/h</td></tr>
+      <tr><td>Range</td><td>55 to 75 km with reserve, at 140 km/h</td></tr>
+      <tr><td>Battery</td><td>150 kg, 37 kWh, charged in 30 minutes at 50 kW</td></tr>
+      <tr><td>Landing</td><td>Four fins spread as legs, 3.3 m apart</td></tr>
+      <tr><td>Noise at the pad</td><td>Ducted fan, no open rotors</td></tr>
+    </table></div>
+    <div style="display:grid;gap:18px">
+      <div class="card"><h3>Why an egg</h3><p>The shell is the nacelle of a tilting fan. In the hover it stands up and blows down. In cruise it lies on its side and blows back, and the wings carry the weight. One fan does both jobs.</p></div>
+      <div class="card"><h3>Safety in layers</h3><p>Thirty percent spare thrust. Two motors on two battery strings, so one failure still flies to a pad. Wings that brake like a dragster's chute. A parachute for the whole aircraft.</p></div>
+      <div class="card"><h3>Three ways to land</h3><p>Spread legs anywhere. Lying down on its belly for step-in boarding and low wind load. A landing cradle at each farm that holds the pod, charges it and meets the door with a platform.</p></div>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:32px">
+    <figure><img src="lineup.png" alt="Size line-up of the pod beside people and a car"><figcaption>Three ground stances beside a 6 ft person and a family car.</figcaption></figure>
+    <figure><img src="boarding.png" alt="Pod lying down with its nose door open"><figcaption>Lying down for boarding, nose door open at ground level.</figcaption></figure>
+    <figure><img src="cradle.png" alt="Pod seated in a landing cradle with a stair"><figcaption>Seated in the landing cradle, held against wind, stairs built in.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="own" class="alt"><div class="in">
+  <div class="head"><span class="eyebrow">Own one</span><h2>For wine farms, estates and fleet operators.</h2><p>A pod on your own pad brings guests from the city in twenty minutes and takes them home after lunch. We are taking expressions of interest from partner farms, private buyers and investors ahead of the prototype programme.</p></div>
+  <div class="steps">
+    <div><span class="eyebrow">Stage 1, 2027</span><h3>Scale model and airflow study</h3><p>A one-fifth scale flying model proves the rotating transition and measures the drag of the shell.</p></div>
+    <div><span class="eyebrow">Stage 2</span><h3>Half-scale demonstrator</h3><p>An unmanned 80 kg aircraft flies the full profile, including lift-off, transition, cruise and landing on its legs.</p></div>
+    <div><span class="eyebrow">Stage 3</span><h3>Full-scale prototype</h3><p>A 650 kg single-seat pod flies unmanned for one hour, then the two-seat shuttle follows for certification.</p></div>
+  </div>
+  <div class="grid3" style="margin-top:32px">
+    <div class="card"><h3>Partner farm</h3><p>A concrete pad, a wind sensor and a 50 kW charger. You host the pad and share the fare on every arrival.</p></div>
+    <div class="card"><h3>Private pod</h3><p>Your own aircraft on your own pad. Pricing on application once the prototype flies.</p></div>
+    <div class="card"><h3>Investor</h3><p>The development programme runs in three funded stages. Ask for the business plan and the patent summary.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="in">
+  <div class="head"><span class="eyebrow">Questions</span><h2>Things people ask.</h2></div>
+  <div class="faq" style="max-width:76ch">
+    <details><summary>Has it flown?</summary><p>Not yet. Juddster is a design in development with a provisional patent and a full engineering specification. The next step is a scale model. Registering interest helps us plan the first route and places no obligation on you.</p></details>
+    <details><summary>Who flies it?</summary><p>Nobody on board. The aircraft flies fixed, surveyed routes automatically with a ground operator watching. Approval for pilotless passenger flight is the longest part of the programme and the fare assumes it.</p></details>
+    <details><summary>What happens if the fan stops?</summary><p>The fan has two stages on two motors and two batteries, so a single failure still gives enough thrust to fly on the wings to a pad. If both fail, a parachute lowers the whole aircraft. The design also has a thirty percent margin of thrust in the hover.</p></details>
+    <details><summary>What about the wind?</summary><p>The Cape Doctor is designed in. Each pad has a wind sensor and a limit, the aircraft lands into the wind, and on the ground it stands on a wide stance or lies down so the wind has little to push against.</p></details>
+    <details><summary>Why does the cabin stay level?</summary><p>Because the cabin hangs from an axle and the shell turns around it. Tail-sitter aircraft of the 1950s laid their pilot on his back to take off. Juddster turns the shell instead of the person.</p></details>
+    <details><summary>How far can it go?</summary><p>The two-seat shuttle flies 55 to 75 km with reserve, which covers the Stellenbosch and Franschhoek farms from the Waterfront. A single-seat version with a larger wing and battery is designed for one hour in the air.</p></details>
+  </div>
+</div></section>
+
+<section id="register" class="alt"><div class="in">
+  <div class="grid2">
+    <div>
+      <div class="head"><span class="eyebrow">Register interest</span><h2>Be on the first flights.</h2><p>Tell us who you are and what you want. We will write back when the first route opens for bookings and when partner and buyer briefings begin.</p></div>
+      <span class="status">Design in development. No payment is taken.</span>
+    </div>
+    <div>
+      <form id="f" novalidate>
+        <div class="row">
+          <label for="name">Name<input id="name" name="name" autocomplete="name" required></label>
+          <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="row">
+          <label for="city">City<input id="city" name="city" autocomplete="address-level2" placeholder="Cape Town"></label>
+          <label for="phone">Phone (optional)<input id="phone" name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <span style="font-weight:600;font-size:15px">I am interested as a</span>
+        <div class="choice">
+          <label><input type="radio" name="kind" value="passenger" checked>Passenger</label>
+          <label><input type="radio" name="kind" value="farm">Partner farm</label>
+          <label><input type="radio" name="kind" value="buyer">Private buyer</label>
+          <label><input type="radio" name="kind" value="investor">Investor</label>
+        </div>
+        <div class="row">
+          <label for="seats">Seats or pods wanted<select id="seats" name="seats"><option>1</option><option selected>2</option><option>3 to 4</option><option>A fleet</option></select></label>
+          <label for="when">When<select id="when" name="when"><option>First flights</option><option>First year</option><option>Whenever it is ready</option></select></label>
+        </div>
+        <label for="msg">Anything else<textarea id="msg" name="msg" placeholder="Which farm, which dates, what you would like to know"></textarea></label>
+        <p class="note" id="formnote">Registering places no obligation and takes no payment. We keep your details only to contact you about Juddster.</p>
+        <div><button class="btn cta" type="submit" id="send">Register interest</button></div>
+        <p class="note" id="err" hidden style="color:var(--alert)"></p>
+      </form>
+      <div id="done" hidden>
+        <h3>Thank you. You are on the list.</h3>
+        <p id="doneText" class="note"></p>
+        <pre id="copy"></pre>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn ghost" type="button" id="copyBtn">Copy my details</button><a class="btn ghost" id="mailBtn" href="#">Email them to Juddster</a></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="in">
+  <b>Juddster</b>
+  <span>An original electric VTOL concept by Judd Lasarow, Cape Town. Patent pending. All performance figures are calculated design targets for an aircraft that has not yet flown. Nothing on this page is an offer to sell an aircraft or a flight.</span>
+  <span>Contact: <span id="contact">jlasarow@gmail.com</span></span>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+try{
+const canvas=document.getElementById('c'), stage=document.getElementById('stage');
+if(!window.THREE){document.getElementById('fallback').hidden=false;canvas.hidden=true;return;}
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:true});}catch(e){document.getElementById('fallback').hidden=false;canvas.hidden=true;return;}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0xe6ecf1); scene.fog=new THREE.Fog(0xe6ecf1,40,120);
+const camera=new THREE.PerspectiveCamera(38,1,0.1,400);
+scene.add(new THREE.HemisphereLight(0xffffff,0x9aa7b1,0.95));
+const sun=new THREE.DirectionalLight(0xffffff,0.75); sun.position.set(6,12,8); scene.add(sun);
+
+const K=1.25, UB=-1.15, UN=1.5;
+const prof=u=>{const s=Math.max(-1,Math.min(1,u/1.5)),t=Math.asin(s);return Math.cos(t)*(1-0.2*Math.sin(t));};
+const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.6,metalness:.05,side:THREE.DoubleSide},o||{}));
+function lathe(u0,u1,scale,phi0,phiLen,seg){const pts=[];for(let i=0;i<=48;i++){const u=u0+(u1-u0)*i/48;pts.push(new THREE.Vector2(Math.max(prof(u)*K*scale,0.001),u*K));}return new THREE.LatheGeometry(pts,seg||64,phi0||0,phiLen||Math.PI*2);}
+
+// ---------- ground ----------
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(600,600),new THREE.MeshBasicMaterial({color:0xd3dbe1}));ground.rotation.x=-Math.PI/2;scene.add(ground);
+const grid=new THREE.GridHelper(600,150,0x9fadb8,0xb3c0c9);grid.position.y=0.01;scene.add(grid);
+function makePad(){const g=new THREE.Group();
+  const d=new THREE.Mesh(new THREE.CircleGeometry(3.2,48),M(0xdfe6ea,{roughness:1}));d.rotation.x=-Math.PI/2;d.position.y=0.02;g.add(d);
+  const r=new THREE.Mesh(new THREE.RingGeometry(2.9,3.1,48),M(0x1c57b3));r.rotation.x=-Math.PI/2;r.position.y=0.03;g.add(r);
+  const p=new THREE.Group();const body=new THREE.Mesh(new THREE.CylinderGeometry(0.17,0.2,1.45,12),M(0x14212b));body.position.y=0.725;p.add(body);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(0.16,12,10),M(0x14212b));head.position.y=1.63;p.add(head);p.position.set(2.5,0.03,1.6);g.add(p);return g;}
+const padA=makePad(), padB=makePad(); scene.add(padA,padB);
+
+// ---------- aircraft ----------
+const root=new THREE.Group(); scene.add(root);
+const AXLE_H=2.47;
+// level body
+const level=new THREE.Group(); root.add(level);
+const blue=M(0x1c57b3);
+const axle=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.07,2.75,16),blue);axle.rotation.z=Math.PI/2;level.add(axle);
+for(const s of [1,-1]){const cap=new THREE.Mesh(new THREE.CylinderGeometry(0.2,0.2,0.08,24),blue);cap.rotation.z=Math.PI/2;cap.position.x=s*1.31;level.add(cap);}
+// wings
+const wshape=new THREE.Shape();wshape.moveTo(0,-0.55);wshape.lineTo(2.5,-0.55);
+for(let i=0;i<=24;i++){const t=Math.PI/2*(1-i/24);wshape.lineTo(2.5*Math.sin(t),-0.55+1.5*Math.cos(t));}
+const wgeo=new THREE.ExtrudeGeometry(wshape,{depth:0.06,bevelEnabled:false});wgeo.rotateX(Math.PI/2);
+const hinges=[],brakes=[];
+for(const s of [1,-1]){const side=new THREE.Group();side.scale.x=s;side.position.x=s*1.36;level.add(side);
+  const hinge=new THREE.Group();side.add(hinge);const br=new THREE.Group();hinge.add(br);
+  const w=new THREE.Mesh(wgeo,blue);br.add(w);
+  for(const xs of [0.6,1.2,1.8]){const tb=new THREE.Mesh(new THREE.CylinderGeometry(0.12,0.12,0.03,16),M(0x14212b));tb.position.set(xs,-0.075,0.1);br.add(tb);}
+  hinges.push(hinge);brakes.push(br);}
+// cabin
+const cabinPivot=new THREE.Group(); root.add(cabinPivot);
+const cabin=new THREE.Group(); cabinPivot.add(cabin);
+const pod=new THREE.Mesh(new THREE.SphereGeometry(0.8,32,24),M(0x5f7684,{transparent:true,opacity:.55}));pod.scale.set(1,0.92,1);pod.position.y=-0.1;cabin.add(pod);
+for(const s of [1,-1]){const seat=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.55,0.12),M(0x14212b));seat.position.set(s*0.27,-0.05,-0.28);cabin.add(seat);
+  const base=new THREE.Mesh(new THREE.BoxGeometry(0.4,0.1,0.42),M(0x14212b));base.position.set(s*0.27,-0.33,-0.08);cabin.add(base);
+  const torso=new THREE.Mesh(new THREE.CylinderGeometry(0.13,0.15,0.5,12),M(0xe9eef1));torso.position.set(s*0.27,-0.03,-0.14);cabin.add(torso);
+  const hd=new THREE.Mesh(new THREE.SphereGeometry(0.12,12,10),M(0xe9eef1));hd.position.set(s*0.27,0.36,-0.12);cabin.add(hd);}
+const sec=new THREE.Mesh(new THREE.CylinderGeometry(0.34,0.3,0.16,24),M(0x14212b));sec.position.y=-0.78;cabin.add(sec);
+const flames=new THREE.Group();cabin.add(flames);
+for(const s of [1,-1]){const f=new THREE.Mesh(new THREE.ConeGeometry(0.14,1.3,12),new THREE.MeshBasicMaterial({color:0xe8892b,transparent:true,opacity:.85}));f.rotation.x=Math.PI;f.position.set(s*0.5,-1.45,0);flames.add(f);}
+const chute=new THREE.Group();cabin.add(chute);
+const can=new THREE.Mesh(new THREE.SphereGeometry(1.9,24,12,0,Math.PI*2,0,Math.PI/2),M(0xc2362b,{roughness:.9}));can.position.y=3.4;chute.add(can);
+{const pts=[];for(let i=0;i<8;i++){const a=i/8*Math.PI*2;pts.push(new THREE.Vector3(0,0.7,0),new THREE.Vector3(1.9*Math.cos(a),3.4,1.9*Math.sin(a)));}
+ chute.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x14212b})));}
+// shell
+const shell=new THREE.Group(); root.add(shell);
+const shellMat=M(0xf3f5f4,{transparent:true,opacity:1,roughness:.45});
+const skin=new THREE.Mesh(lathe(UB,UN,1),shellMat);shell.add(skin);
+const glassMat=M(0x2f6f7e,{transparent:true,opacity:.7,roughness:.15,metalness:.2});
+const win=new THREE.Mesh(lathe(-0.2,1.5,1.006,-0.27,0.54,12),glassMat);shell.add(win);
+const hatch=new THREE.Mesh(lathe(-0.2,1.5,1.006,Math.PI-0.27,0.54,12),M(0xc9d2d8));shell.add(hatch);
+const vent=new THREE.Mesh(lathe(-1.1,-0.28,1.006,-0.22,0.44,10),M(0xc9d2d8));shell.add(vent);
+const baseY=UB*K, baseR=prof(UB)*K;
+const rim=new THREE.Mesh(new THREE.TorusGeometry(baseR,0.05,10,48),M(0x14212b));rim.rotation.x=Math.PI/2;rim.position.y=baseY;shell.add(rim);
+const fan=new THREE.Group();fan.position.y=baseY+0.18;shell.add(fan);
+for(let i=0;i<7;i++){const b=new THREE.Mesh(new THREE.BoxGeometry(baseR*0.95,0.03,0.2),M(0x14212b));b.position.x=baseR*0.5;const h=new THREE.Group();h.rotation.y=i/7*Math.PI*2;b.rotation.x=0.45;h.add(b);fan.add(h);}
+const hub=new THREE.Mesh(new THREE.CylinderGeometry(0.16,0.12,0.3,16),M(0x14212b));fan.add(hub);
+for(const s of [1,-1]){const bat=new THREE.Mesh(new THREE.BoxGeometry(0.15,0.8,0.9),M(0xd99a1c));bat.position.set(s*0.8,0.68,0);bat.rotation.z=s*0.22;shell.add(bat);}
+// fins
+const finShape=new THREE.Shape();finShape.moveTo(0,0.5);finShape.lineTo(0.02,0);finShape.lineTo(0.2,-1.3);finShape.lineTo(0.0,-1.3);finShape.lineTo(-0.1,0);
+const fgeo=new THREE.ExtrudeGeometry(finShape,{depth:0.05,bevelEnabled:false});fgeo.translate(0,0,-0.025);
+const fins=[];
+for(let i=0;i<4;i++){const a=Math.PI/4+i*Math.PI/2;const g=new THREE.Group();g.position.set(baseR*Math.sin(a),baseY,baseR*Math.cos(a));g.rotation.y=a-Math.PI/2;
+  const piv=new THREE.Group();g.add(piv);const f=new THREE.Mesh(fgeo,M(0x14212b));piv.add(f);
+  const foot=new THREE.Mesh(new THREE.BoxGeometry(0.34,0.05,0.3),M(0x14212b));foot.position.set(0.1,-1.3,0);piv.add(foot);
+  shell.add(g);fins.push(piv);}
+// skirt
+const skirt=[];const SK_Y=-0.55*K, SK_R=prof(-0.55)*K;
+for(let i=0;i<14;i++){const a=i/14*Math.PI*2;const g=new THREE.Group();g.position.set(SK_R*Math.sin(a),SK_Y,SK_R*Math.cos(a));g.rotation.y=a;
+  const piv=new THREE.Group();g.add(piv);const p=new THREE.Mesh(new THREE.PlaneGeometry(0.56,0.8),M(0xdfe5e8));p.position.set(0,-0.4,0.012);piv.add(p);shell.add(g);skirt.push(piv);}
+
+// ---------- timeline ----------
+const KF=[
+ {t:0,   A:0, wd:0, wb:0, fin:1,  sk:0, alt:0,   lean:0,  spd:0,   fan:0},
+ {t:2,   A:0, wd:0, wb:0, fin:1,  sk:1, alt:0,   lean:0,  spd:0,   fan:1},
+ {t:3.5, A:0, wd:0, wb:0, fin:1,  sk:1, alt:1.2, lean:0,  spd:0,   fan:1},
+ {t:6,   A:0, wd:1, wb:0, fin:.5, sk:0, alt:7,   lean:0,  spd:0,   fan:1},
+ {t:7.5, A:15,wd:1, wb:0, fin:.5, sk:0, alt:7,   lean:16, spd:.2,  fan:1},
+ {t:10,  A:40,wd:1, wb:0, fin:.5, sk:0, alt:7.5, lean:17, spd:.7,  fan:1},
+ {t:12,  A:90,wd:1, wb:0, fin:.5, sk:0, alt:8,   lean:0,  spd:1,   fan:1},
+ {t:16,  A:90,wd:1, wb:0, fin:.5, sk:0, alt:8,   lean:0,  spd:1,   fan:1},
+ {t:17.5,A:90,wd:1, wb:1, fin:.5, sk:0, alt:8,   lean:-8, spd:.75, fan:.3},
+ {t:19.5,A:90,wd:1, wb:1, fin:.5, sk:0, alt:7.6, lean:-6, spd:.35, fan:.3},
+ {t:20,  A:90,wd:1, wb:0, fin:.5, sk:0, alt:7.5, lean:0,  spd:.3,  fan:.6},
+ {t:23,  A:0, wd:1, wb:0, fin:.5, sk:1, alt:7,   lean:-6, spd:0,   fan:1},
+ {t:24,  A:0, wd:0, wb:0, fin:1,  sk:1, alt:6,   lean:0,  spd:0,   fan:1},
+ {t:26.5,A:0, wd:0, wb:0, fin:1,  sk:1, alt:.3,  lean:0,  spd:0,   fan:1},
+ {t:27,  A:0, wd:0, wb:0, fin:1,  sk:0, alt:0,   lean:0,  spd:0,   fan:0}
+];
+const TEND=27, VMAX=180, VSCENE=16;
+const ease=x=>x*x*(3-2*x);
+function S(t){t=Math.max(0,Math.min(TEND,t));let i=0;while(i<KF.length-2&&t>KF[i+1].t)i++;const a=KF[i],b=KF[i+1];const k=ease((t-a.t)/(b.t-a.t||1));const o={};for(const key in a)o[key]=a[key]+(b[key]-a[key])*k;return o;}
+const travelTab=[];{let z=0;for(let i=0;i<=540;i++){travelTab.push(z);z+=S(i*TEND/540).spd*VSCENE*(TEND/540);}}
+const travel=t=>{const f=Math.max(0,Math.min(540,t/TEND*540)),i=Math.floor(f);return travelTab[i]+((travelTab[Math.min(540,i+1)]-travelTab[i])*(f-i));};
+const TOTAL=travelTab[540];
+const PH=[
+ {n:'Standing',a:0,b:2,d:'The egg stands on its four fins, which are also its landing legs. Wings lie folded against the flanks. Total height is about 4 m and the widest point about 2.5 m.'},
+ {n:'Lift-off',a:2,b:6,d:'The fan in the base spins up and the skirt holds an air cushion for the first metre. The egg climbs straight up, the skirt closes and the wings swing out level.'},
+ {n:'Transition',a:6,b:12,d:'The shell rolls a quarter turn around the axle, so the fan goes from lifting to pushing. The wings stay level and take up the weight. The cabin leans back by up to 17 degrees with the forward push and then settles.'},
+ {n:'Cruise',a:12,b:16,d:'The shell lies nose forward with the fan behind. The wings carry the weight at about 180 km/h and the fins act as a tail. The window strip now looks ahead and down.'},
+ {n:'Air brake',a:16,b:20,d:'Each wing pivots about its own span so its hollow underside faces the airflow. Drag slows the aircraft, and small turbines in the wing recover a little of the energy.'},
+ {n:'Landing',a:20,b:27,d:'The shell rolls back upright, the skirt opens, the wings fold and the fins spread into legs. The fan eases the egg down onto the pad.'},
+ {n:'Escape',esc:true,d:'In an emergency the panels above the cabin release, rockets fire the cabin clear and a parachute lowers it. The main battery stays behind in the shell.'}
+];
+const ESC_LEN=8, ESC_BASE=9;
+
+// ---------- UI ----------
+const phasesEl=document.getElementById('phases'), scrub=document.getElementById('scrub'), playBtn=document.getElementById('play'), insideBtn=document.getElementById('inside');
+const dTitle=document.getElementById('dTitle'), dText=document.getElementById('dText');
+const rA=document.getElementById('rA'), rV=document.getElementById('rV'), rL=document.getElementById('rL'), rH=document.getElementById('rH');
+let t=0, playing=false, stopAt=TEND, escT=-1, inside=false, curPhase=-1;
+PH.forEach((p,i)=>{const b=document.createElement('button');b.type='button';b.id='ph'+i;b.textContent=p.n;if(p.esc)b.className='escape';b.setAttribute('aria-pressed','false');
+  b.addEventListener('click',()=>{if(p.esc){escT=0;playing=true;playBtn.textContent='Pause';}else{escT=-1;t=p.a;stopAt=p.b;playing=true;playBtn.textContent='Pause';}});phasesEl.appendChild(b);});
+playBtn.addEventListener('click',()=>{if(playing){playing=false;playBtn.textContent='Play full flight';return;}escT=-1;if(t>=TEND-0.05)t=0;stopAt=TEND;playing=true;playBtn.textContent='Pause';});
+scrub.addEventListener('input',()=>{escT=-1;playing=false;playBtn.textContent='Play full flight';t=parseFloat(scrub.value);});
+insideBtn.addEventListener('click',()=>{inside=!inside;insideBtn.setAttribute('aria-pressed',String(inside));insideBtn.textContent=inside?'Solid shell':'See inside';});
+function setPhase(i){if(i===curPhase)return;curPhase=i;PH.forEach((p,j)=>document.getElementById('ph'+j).setAttribute('aria-pressed',String(j===i)));dTitle.textContent=PH[i].n;dText.textContent=PH[i].d;}
+
+// ---------- camera ----------
+let az=0.9, pol=1.25, dist=15, tgtY=AXLE_H;
+function placeCam(){const y=tgtY;camera.position.set(dist*Math.sin(pol)*Math.sin(az),Math.max(0.4,y+dist*Math.cos(pol)),dist*Math.sin(pol)*Math.cos(az));camera.lookAt(0,y,0);}
+const ptr=new Map();let pinch=0;
+canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);ptr.set(e.pointerId,[e.clientX,e.clientY]);});
+canvas.addEventListener('pointermove',e=>{if(!ptr.has(e.pointerId))return;const p=ptr.get(e.pointerId);const dx=e.clientX-p[0],dy=e.clientY-p[1];ptr.set(e.pointerId,[e.clientX,e.clientY]);
+  if(ptr.size===1){az-=dx*0.008;pol=Math.max(0.25,Math.min(1.55,pol-dy*0.006));}
+  else if(ptr.size===2){const v=[...ptr.values()];const d=Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1]);if(pinch)dist=Math.max(7,Math.min(40,dist*pinch/d));pinch=d;}});
+const up=e=>{ptr.delete(e.pointerId);pinch=0;};canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
+canvas.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(7,Math.min(40,dist*(1+Math.sign(e.deltaY)*0.08)));},{passive:false});
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+window.addEventListener('resize',resize);resize();
+
+// ---------- apply ----------
+const R=d=>d*Math.PI/180, lerp=(a,b,k)=>a+(b-a)*k;
+let fanAng=0;
+function apply(s,e,dt){
+  shell.rotation.x=R(s.A);
+  cabinPivot.rotation.x=R(s.lean);
+  hinges.forEach(h=>h.rotation.z=R(97)*(1-s.wd));
+  brakes.forEach(b=>b.rotation.x=R(-76)*s.wb);
+  const finAng=s.fin<0.5?lerp(4,26,s.fin/0.5):lerp(26,38,(s.fin-0.5)/0.5);
+  fins.forEach(f=>f.rotation.z=R(finAng));
+  skirt.forEach(p=>p.rotation.x=R(lerp(20,-52,s.sk)));
+  fanAng+=s.fan*dt*22;fan.rotation.y=fanAng;
+  let y=AXLE_H+s.alt, fall=0;
+  cabin.position.set(0,0,0);flames.visible=false;chute.visible=false;hatch.visible=true;hatch.position.set(0,0,0);
+  if(e>=0){ // escape
+    const k=e/ESC_LEN;
+    const hk=Math.min(1,k/0.15);hatch.position.set(0,0,-2.5*hk);hatch.visible=hk<1;
+    fall=k>0.15?26*Math.pow((k-0.15)/0.85,1.6):0;
+    const rise=k<0.15?0:(k<0.4?9*ease((k-0.15)/0.25):9-4.5*((k-0.4)/0.6));
+    flames.visible=k>0.15&&k<0.4;chute.visible=k>0.42;
+    const sc=Math.min(1,(k-0.42)/0.12);chute.scale.setScalar(Math.max(0.01,sc));
+    y=Math.max(1.6,y-fall);cabin.position.y=(AXLE_H+s.alt+rise)-y;
+    cabinPivot.rotation.x=R(s.lean)*(1-Math.min(1,k/0.2));
+    if(y<=1.61){shell.rotation.x=R(lerp(s.A,80,Math.min(1,(k-0.6)/0.2)));}
+    skirt.forEach((p,i)=>p.rotation.x=R(lerp(20,-52,Math.min(1,k*4)*(i<7?1:0.35))));
+  }
+  root.position.y=y;
+  shellMat.opacity+=(((inside||e>=0)?0.28:1)-shellMat.opacity)*Math.min(1,dt*6);shellMat.depthWrite=shellMat.opacity>0.95;
+  const tr=travel(e>=0?ESC_BASE:t);
+  grid.position.z=-(tr%4);padA.position.z=-tr;padB.position.z=TOTAL-tr;
+  tgtY+=((e>=0?Math.max(3,y+cabin.position.y*0.6):y)-tgtY)*Math.min(1,dt*4);
+  rA.textContent=Math.round(s.A)+' deg';rV.textContent=Math.round(s.spd*VMAX)+' km/h';rL.textContent=Math.round(Math.abs(s.lean))+' deg';rH.textContent=Math.round((e>=0?(y-AXLE_H+cabin.position.y):s.alt)*6)+' m';
+}
+let last=performance.now();
+function frame(now){const dt=Math.min(0.05,(now-last)/1000);last=now;
+  if(playing){if(escT>=0){escT+=dt;if(escT>=ESC_LEN){escT=ESC_LEN;playing=false;playBtn.textContent='Play full flight';}}
+    else{t+=dt;if(t>=stopAt){t=stopAt;playing=false;playBtn.textContent='Play full flight';}}}
+  if(escT>=0){setPhase(6);apply(S(ESC_BASE),escT,dt);}
+  else{let i=0;for(let j=0;j<6;j++)if(t>=PH[j].a)i=j;if(t>=TEND-0.001)i=5;setPhase(i);scrub.value=t;apply(S(t),-1,dt);}
+  placeCam();renderer.render(scene,camera);requestAnimationFrame(frame);}
+setPhase(0);apply(S(0),-1,0.016);shellMat.opacity=1;placeCam();requestAnimationFrame(frame);
+}catch(e){console.error(e)}
+})();
+</script>
+
+<script>
+(function(){
+const CONTACT='jlasarow@gmail.com';
+const f=document.getElementById('f'),err=document.getElementById('err'),done=document.getElementById('done');
+f.addEventListener('submit',async function(ev){
+  ev.preventDefault(); err.hidden=true;
+  const d=Object.fromEntries(new FormData(f).entries());
+  if(!d.name.trim()||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)){err.textContent='Please give your name and a valid email address.';err.hidden=false;return;}
+  const btn=document.getElementById('send'); btn.disabled=true; btn.textContent='Saving';
+  let saved=false;
+  try{const r=await fetch('/api/interest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); saved=r.ok;}catch(e){}
+  const lines=['Juddster interest','Name: '+d.name,'Email: '+d.email,'City: '+(d.city||'-'),'Phone: '+(d.phone||'-'),'As: '+d.kind,'Seats or pods: '+d.seats,'When: '+d.when,'Notes: '+(d.msg||'-')];
+  document.getElementById('copy').textContent=lines.join('\n');
+  document.getElementById('doneText').textContent=saved?'Your details are saved with Juddster. We will write to you when the first route opens.':'Our list could not be reached just now, so please send these details to '+CONTACT+' and we will add you by hand.';
+  document.getElementById('mailBtn').href='mailto:'+CONTACT+'?subject='+encodeURIComponent('Juddster interest - '+d.name)+'&body='+encodeURIComponent(lines.join('\n'));
+  if(!saved){btn.disabled=false;btn.textContent='Register interest';}
+  f.hidden=true; done.hidden=false; done.scrollIntoView({block:'nearest'});
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  const t=document.getElementById('copy').textContent;
+  const fall=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('copy'));const s=getSelection();s.removeAllRanges();s.addRange(r);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{this.textContent='Copied';},fall);}else fall();
+});
+})();
+</script>
+
+</body></html>
